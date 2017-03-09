@@ -20,19 +20,17 @@ var session = require('express-session')
 // Initialize app
 var app = express()
 
-// Config file for YELP
-require('./app/config/yelp.js')
+var Yelp = require('yelp')
 
-var oauth = OAuth({
-	consumer: {
-		key: process.env.YELP_CONSUMER_KEY,
-		secret: process.env.YELP_CONSUMER_SECRET
-	},
-	signature_method: 'HMAC-SHA1',
-	hash_function: function(base_string, key) {
-		return crypto.createHmac('sha1', key).update(base_string).digest('base64');
-	}
+var yelp = new Yelp({
+	consumer_key: process.env.YELP_CONSUMER_KEY,
+	consumer_secret: process.env.YELP_CONSUMER_SECRET,
+	token: process.env.YELP_TOKEN,
+	token_secret: process.env.YELP_TOKEN_SECRET
 })
+
+
+
 
 
 // Enables the use of .env file in root folder
@@ -61,7 +59,7 @@ app.use(session({
 }))
 
 // Invoke the app to the routes file
-routes(app, request, oauth)
+routes(app, yelp)
 
 // This makes the app always listen for querys
 var port = process.env.PORT || 3000;
