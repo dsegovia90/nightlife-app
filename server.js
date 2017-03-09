@@ -44,8 +44,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 require('./app/config/passport.js')
 
 // Initialize mongoose with the .env variable
-mongoose.connect(process.env.MONGO_URI)
-mongoose.Promise = global.Promises
+// mongoose.connect(process.env.MONGO_URI)
+// mongoose.Promise = global.Promises
 
 
 // Set pug as view engine
