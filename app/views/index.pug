@@ -5,13 +5,13 @@ body
 	section
 		.container
 			.columns
-				.column.is-half.is-offset-one-quarter
+				.column.is-half.is-offset-one-quarter.has-text-centered
 					form(action='/search' method='post')
 						label.label.has-text-centered Search your local bars!
 						p.control
 							input(class='input has-text-centered' type='text' placeholder='My City' name='location')
 						p.control
-							input(class='input' type='submit' value='Search')
+							input(class='input has-text-centered' type='submit' value='Search')
 	if bars
 		section.container
 			.columns
@@ -28,6 +28,13 @@ body
 											strong= bar.name
 											br
 											= bar.snippet_text
+									nav.level
+										.level-left
+											a(class='level-item' title='RSVP')
+												span.icon.is-small
+													i.fa.fa-book
+											p.level-item
+												small= '0 Going'
 
 
 	if error
