@@ -9,9 +9,9 @@ body
 					form(action='/search' method='post')
 						label.label.has-text-centered Search your local bars!
 						p.control
-							input(class='input has-text-centered' type='text' placeholder='My City' name='location')
+							input(id='search-box' class='input has-text-centered' type='text' placeholder='My City' name='location')
 						p.control
-							input(class='input has-text-centered' type='submit' value='Search')
+							input(id='search-button' class='input has-text-centered' type='submit' value='Search')
 	if bars
 		section.container
 			.columns
@@ -38,6 +38,7 @@ body
 
 
 	if error
-		p= error
+		br
+		p.has-text-centered= error
 				
 
