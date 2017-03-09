@@ -6,9 +6,31 @@ body
 		.container
 			.columns
 				.column.is-half.is-offset-one-quarter
-					form
+					form(action='/search' method='post')
 						label.label.has-text-centered Search your local bars!
 						p.control
-							input(class='input has-text-centered' type='text' placeholder='My City')
+							input(class='input has-text-centered' type='text' placeholder='My City' name='location')
 						p.control
 							input(class='input' type='submit' value='Search')
+	if bars
+		section.container
+			.columns
+				.column.is-10.is-offset-1
+					each bar in bars
+						.box
+							article.media
+								.media-left
+									figure.image.is-64x64
+										img(src=bar.image_url '' alt=bar.id)
+								.media-content
+									.content
+										p
+											strong= bar.name
+											br
+											= bar.snippet_text
+
+
+	if error
+		p= error
+				
+

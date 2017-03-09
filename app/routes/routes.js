@@ -6,12 +6,21 @@ module.exports = function(app, yelp){
 	})
 
 	app.get('/search', function(req, res) {
-		yelp.search({category_filter: 'bars', location: 'monterrey'})
+		res.redirect('/')
+	})
+
+	app.post('/search', function(req, res) {
+
+		yelp.search({category_filter: 'bars', location: req.body.location})
 		.then(function (data) {
-			console.log(data)
+			res.locals.bars = data.businesses
+			res.render('index')
 		})
 		.catch(function(err) {
-			console.error(err)
+			var data = err.data
+			data = data.match(/"text": "(.*?(?="))/)
+			res.locals.error = data[1] + '.'
+			res.render('index')
 		})
 	})
 	

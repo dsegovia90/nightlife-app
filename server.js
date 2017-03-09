@@ -1,3 +1,7 @@
+// Enables the use of .env file in root folder
+require('dotenv').config()
+
+
 var express = require('express')
 
 // Location of the routes file.
@@ -29,12 +33,12 @@ var yelp = new Yelp({
 	token_secret: process.env.YELP_TOKEN_SECRET
 })
 
+// This is to read the query of the search post
+var bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
-
-
-// Enables the use of .env file in root folder
-require('dotenv').load()
 
 // Point to the passport config file
 require('./app/config/passport.js')
