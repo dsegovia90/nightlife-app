@@ -13,7 +13,7 @@ var mongoose = require('mongoose')
 
 
 // Require passport to accept logins
-var passport = require('passport')
+// var passport = require('passport')
 
 
 // Control logins with express-session
@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 // Point to the passport config file
-require('./app/config/passport.js')
+// require('./app/config/passport.js')
 
 // Initialize mongoose with the .env variable
 // mongoose.connect(process.env.MONGO_URI)
