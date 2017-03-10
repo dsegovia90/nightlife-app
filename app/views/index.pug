@@ -17,6 +17,7 @@ body
 			.columns
 				.column.is-10.is-offset-1
 					each bar in bars
+						-var link = '/rsvp/' + bar.id
 						.box
 							article.media
 								.media-left
@@ -30,11 +31,11 @@ body
 											= bar.snippet_text
 									.level.is-mobile
 										.level-left
-											a(class='level-item' title='RSVP')
+											a(class='level-item' title='RSVP' href=link)
 												span.icon.is-small
 													i.fa.fa-book
 												p
-													small= '0 Going'
+													small= bar.rsvp + ' Going'
 
 
 	if error

@@ -12,8 +12,6 @@ var routes = require('./app/routes/routes.js')
 var mongoose = require('mongoose')
 
 
-// Require passport to accept logins
-// var passport = require('passport')
 
 
 // Control logins with express-session
@@ -40,12 +38,14 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 
+// Require passport to accept logins
+var passport = require('passport')
 // Point to the passport config file
-// require('./app/config/passport.js')
+require('./app/config/passport.js')(passport)
 
 // Initialize mongoose with the .env variable
-// mongoose.connect(process.env.MONGO_URI)
-// mongoose.Promise = global.Promises
+mongoose.connect(process.env.MONGO_URI)
+mongoose.Promise = global.Promises
 
 
 // Set pug as view engine
@@ -62,8 +62,11 @@ app.use(session({
 	saveUninitialized: true
 }))
 
+app.use(passport.initialize())
+app.use(passport.session())
+
 // Invoke the app to the routes file
-routes(app, yelp)
+routes(app, yelp, passport)
 
 // This makes the app always listen for querys
 var port = process.env.PORT || 3000;
