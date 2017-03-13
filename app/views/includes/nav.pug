@@ -5,20 +5,27 @@ section.hero.is-dark.is-bold
 					span
 					span
 					span
+				.nav-left
+					if user
+						a= 'Hello ' + user.github.displayName
+					else
+						a= 'Log in to RSVP'
 				.nav-right
 					#nav-menu.nav-right.nav-menu
 						a(class='nav-item' href='/') Home
 						if !user
-							a(class='nav-item' href='/auth/github') Login
+							a(class='nav-item' href='/auth/github') Login 
+								i.fa.fa-github(aria-hidden='true')
 						else
 							a(class='nav-item' href='logout') Logout
+								i.fa.fa-github(aria-hidden='true')
 		.hero-body
 			.container
 				a(href='/')
 					h1.title Nightlife App!
 				h2.subtitle Using yelp API
-		.hero-foot.has-text-right
-			.container
+		.hero-foot
+			.container.has-text-right
 				p
 					small= 'Made by '
 						a(href='https://github.com/sego90' target='_blank') Daniel S.  

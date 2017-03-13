@@ -35,7 +35,10 @@ body
 												span.icon.is-small
 													i.fa.fa-book
 												p
-													small= bar.rsvp + ' Going'
+													if bar.numberOfRsvp
+														small= bar.numberOfRsvp + ' Going'
+													else
+														small= '0 Going'
 
 
 	if error
