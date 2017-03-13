@@ -3,7 +3,7 @@ var Schema = mongoose.Schema
 
 var Bar = new Schema({
 	id: String,
-	rsvp: Number
+	rsvp: Array
 })
 
 module.exports = mongoose.model('Bar', Bar)
