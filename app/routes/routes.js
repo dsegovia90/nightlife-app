@@ -3,7 +3,6 @@ var Bars = require('../models/bars.js')
 module.exports = function(app, yelp, passport){
 
 	var storedData
-	var useStored = false
 
 	function isLoggedIn(req, res, next){
 		if(req.isAuthenticated()){
@@ -83,7 +82,11 @@ module.exports = function(app, yelp, passport){
 	app.get('/auth/github/callback',
 		passport.authenticate('github', { failureRedirect: '/login' }),
 		function(req, res){
-			res.redirect('/search')
+			if(storedData){
+				res.redirect('/search')
+			}else{
+				res.redirect('/')
+			}
 		})
 
 	app.get('/logout', function(req, res){
